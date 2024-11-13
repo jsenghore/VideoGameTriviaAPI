@@ -1,4 +1,4 @@
-package com.example.videogametriviaapi;
+package main.java.com.example.videogametriviaapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
