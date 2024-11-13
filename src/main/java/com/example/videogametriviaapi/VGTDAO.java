@@ -1,4 +1,4 @@
-package main.java.com.example.videogametriviaapi;
+package com.example.videogametriviaapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

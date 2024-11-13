@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SoftwareDevProject.iml" filepath="$PROJECT_DIR$/SoftwareDevProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VideoGameTriviaAPI.iml" filepath="$PROJECT_DIR$/.idea/modules/VideoGameTriviaAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VideoGameTriviaAPI.main.iml" filepath="$PROJECT_DIR$/.idea/modules/VideoGameTriviaAPI.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VideoGameTriviaAPI.test.iml" filepath="$PROJECT_DIR$/.idea/modules/VideoGameTriviaAPI.test.iml" />
     </modules>
   </component>
 </project>

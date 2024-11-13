@@ -1,4 +1,4 @@
-package main.java.com.example.videogametriviaapi;
+package com.example.videogametriviaapi;
 
 import javax.persistence.*;
 import java.util.List;
