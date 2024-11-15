@@ -1,4 +1,4 @@
-package com.example.videogametriviaapi;
+package APIClasses;
 
 public class TriviaFact {
     private Long id; // Unique identifier for the trivia fact
