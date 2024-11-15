@@ -1,0 +1,36 @@
+Team 5 Video Game Trivia API:
+
+1. Define Your API Endpoints
+trivia facts:
+GET /trivia/facts/random: Retrieve a random trivia fact from a random category 
+GET /trivia/facts/random/(category): Retrieve a random trivia fact from a specified category (adventure, rpg, shooter, sports, strategy).
+POST /trivia/facts: Add a new trivia fact.
+PUT /trivia/facts/{id}: Update an existing trivia fact.
+DELETE /trivia/facts/{id}: Delete a trivia fact.
+
+trivia questions:
+GET /trivia/questions/quiz: Retrieve 5 random trivia questions.
+GET /trivia/questions/quiz/(category): Retrieve 5 random trivia questions from a specified category (adventure, rpg, shooter, sports, strategy).
+POST /trivia/questions: Add a new trivia question.
+PUT /trivia/questions/{id}: Update an existing trivia question.
+DELETE /trivia/questions/{id}: Delete a trivia question.
+
+2. Scheduled Tasks
+Daily Trivia Fact Post: Post a random trivia fact to X.com every day.
+Weekly Trivia Question Post: Post a random trivia question to X.com every week.
+Monthly Popular Trivia: Retrieve and print the most popular trivia category (biggest number of entries in table of category).
+Database Cleanup: delete trivia facts and questions that have been in the database for 3 or more months.
+
+3. Deployment
+Deploy on Digital Ocean.
+Ensure your API is accessible via a public URL.
+
+4. Database Integration
+Use MySQL to store trivia questions and facts.
+Implement CRUD operations to interact with the database.
+
+5. User Scenarios
+GET Request: Users can retrieve a random trivia fact or randomized trivia quiz with the choice of picking from a list of categories.
+POST Request: Users can submit a new trivia fact or question to a category of their choice.
+PUT Request: Users can update an existing trivia fact or question.
+DELETE Request: Users can delete an existing trivia fact or question.
