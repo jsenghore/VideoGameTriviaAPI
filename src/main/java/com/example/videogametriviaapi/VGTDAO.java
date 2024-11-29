@@ -1,12 +1,11 @@
 package com.example.videogametriviaapi;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import java.util.List;
 import java.util.Random;
 
@@ -20,16 +19,14 @@ public class VGTDAO {
 
     // Trivia Facts
     public TriviaFact getRandomFact() {
-        TypedQuery<TriviaFact> query = entityManager.createQuery("SELECT f FROM TriviaFact f", TriviaFact.class);
-        List<TriviaFact> facts = query.getResultList();
-        return facts.isEmpty() ? null : facts.get(random.nextInt(facts.size()));
+        Query query = entityManager.createNativeQuery("SELECT * FROM trivia_facts ORDER BY RAND() LIMIT 1", TriviaFact.class);
+        return (TriviaFact) query.getSingleResult();
     }
 
     public TriviaFact getRandomFactByCategory(String category) {
-        TypedQuery<TriviaFact> query = entityManager.createQuery("SELECT f FROM TriviaFact f WHERE f.category = :category", TriviaFact.class);
+        Query query = entityManager.createNativeQuery("SELECT * FROM trivia_facts WHERE category = :category ORDER BY RAND() LIMIT 1", TriviaFact.class);
         query.setParameter("category", category);
-        List<TriviaFact> facts = query.getResultList();
-        return facts.isEmpty() ? null : facts.get(random.nextInt(facts.size()));
+        return (TriviaFact) query.getSingleResult();
     }
 
     @Transactional
@@ -57,14 +54,14 @@ public class VGTDAO {
 
     // Trivia Questions
     public List<TriviaQuestion> getRandomQuestions() {
-        TypedQuery<TriviaQuestion> query = entityManager.createQuery("SELECT q FROM TriviaQuestion q", TriviaQuestion.class);
-        return query.setMaxResults(5).getResultList();
+        Query query = entityManager.createNativeQuery("SELECT * FROM trivia_questions ORDER BY RAND() LIMIT 5", TriviaQuestion.class);
+        return query.getResultList();
     }
 
     public List<TriviaQuestion> getRandomQuestionsByCategory(String category) {
-        TypedQuery<TriviaQuestion> query = entityManager.createQuery("SELECT q FROM TriviaQuestion q WHERE q.category = :category", TriviaQuestion.class);
+        Query query = entityManager.createNativeQuery("SELECT * FROM trivia_questions WHERE category = :category ORDER BY RAND() LIMIT 5", TriviaQuestion.class);
         query.setParameter("category", category);
-        return query.setMaxResults(5).getResultList();
+        return query.getResultList();
     }
 
     @Transactional
@@ -93,8 +90,8 @@ public class VGTDAO {
 
     // New Method: Get Most Popular Trivia Category
     public String getMostPopularCategory() {
-        TypedQuery<Object[]> query = entityManager.createQuery(
-                "SELECT f.category, COUNT(f) FROM TriviaFact f GROUP BY f.category ORDER BY COUNT(f) DESC", Object[].class);
+        Query query = entityManager.createNativeQuery(
+                "SELECT category, COUNT(*) FROM trivia_facts GROUP BY category ORDER BY COUNT(*) DESC");
         List<Object[]> results = query.getResultList();
         return results.isEmpty() ? null : (String) results.get(0)[0]; // Return the category with the highest count
     }
@@ -103,8 +100,8 @@ public class VGTDAO {
     @Transactional
     public void cleanupOldEntries() {
         // Assuming you have a timestamp field in your entities to check age
-        entityManager.createQuery("DELETE FROM TriviaFact f WHERE f.creationDate < CURRENT_DATE - INTERVAL 3 MONTH").executeUpdate();
-        entityManager.createQuery("DELETE FROM TriviaQuestion q WHERE q.creationDate < CURRENT_DATE - INTERVAL 3 MONTH").executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM trivia_facts WHERE creation_date < NOW() - INTERVAL 3 MONTH").executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM trivia_questions WHERE creation_date < NOW() - INTERVAL 3 MONTH").executeUpdate();
     }
 }
 

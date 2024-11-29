@@ -1,6 +1,7 @@
 package com.example.videogametriviaapi;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -13,19 +14,28 @@ public class TriviaQuestion {
 
     private String question; // The trivia question text
 
-    @ElementCollection // To store a list of options
+    @ElementCollection
+    @CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
+    @Column(name = "option")
     private List<String> options; // List of answer choices
 
+    @Column(name = "correct_answer")
     private String correctAnswer; // The correct answer
 
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate; // Timestamp for when the question was created
+
     // Constructors
-    public TriviaQuestion() {}
+    public TriviaQuestion() {
+        this.creationDate = LocalDateTime.now(); // Set creation date to now by default
+    }
 
     public TriviaQuestion(Long id, String question, List<String> options, String correctAnswer) {
         this.id = id;
         this.question = question;
         this.options = options;
         this.correctAnswer = correctAnswer;
+        this.creationDate = LocalDateTime.now(); // Set creation date to now
     }
 
     // Getters and Setters
@@ -59,6 +69,14 @@ public class TriviaQuestion {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 }
 

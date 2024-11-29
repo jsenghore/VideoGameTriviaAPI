@@ -21,12 +21,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter' // Core Spring Boot functionality
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA for database access
     implementation 'org.springframework.boot:spring-boot-starter-web' // REST APIs
-    implementation 'mysql:mysql-connector-java' // MySQL database driver
-    implementation 'org.springframework.boot:spring-boot-starter-scheduling' // Scheduling tasks
     implementation 'org.springframework.boot:spring-boot-starter-validation' // For input validation
     implementation 'org.springframework.boot:spring-boot-starter-actuator' // For monitoring and management
     testImplementation 'org.springframework.boot:spring-boot-starter-test' // Testing support
     implementation 'javax.persistence:javax.persistence-api:2.2'
+    runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
