@@ -1,7 +1,7 @@
 HELP.md
 .gradle
 build/
-!../../SoftwareDevProject/gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
@@ -18,7 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea
+../../Downloads/SoftwareDevProject-walter (1)/SoftwareDevProject-walter/.idea
 *.iws
 *.iml
 *.ipr
