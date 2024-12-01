@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="corretto-17.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.jdks/corretto-17.0.12" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
