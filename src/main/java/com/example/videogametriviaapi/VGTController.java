@@ -3,7 +3,6 @@ package com.example.videogametriviaapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -14,18 +13,18 @@ public class VGTController {
     private VGTDAO vgtDAO;
 
     // Trivia Facts
-    @GetMapping("/getRandomFact")
+    @GetMapping("/randomFact")
     public TriviaFact getRandomFact() {
         return vgtDAO.getRandomFact();
     }
 
-    @GetMapping("/getRandomFactByCategory/{category}")
+    @GetMapping("/randomFactByCat/{category}")
     public TriviaFact getRandomFactByCategory(@PathVariable String category) {
         return vgtDAO.getRandomFactByCategory(category);
     }
 
     @PostMapping("/addFact")
-    public void addFact(@RequestBody TriviaFact fact) throws SQLException {
+    public void addFact(@RequestBody TriviaFact fact) {
         vgtDAO.addFact(fact);
     }
 
@@ -34,9 +33,9 @@ public class VGTController {
         vgtDAO.updateFact(id, fact);
     }
 
-    @RequestMapping("/deleteFact/{id}")
-    public TriviaFact deleteFact(@PathVariable int id) {
-        return vgtDAO.deleteFact(id);
+    @DeleteMapping("/deleteFact/{id}")
+    public void deleteFact(@PathVariable int id) {
+        vgtDAO.deleteFact(id);
     }
 
     // Trivia Questions

@@ -1,11 +1,11 @@
 package com.example.videogametriviaapi;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Random;
 
@@ -15,13 +15,13 @@ public class VGTDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+    private final Random random = new Random();
 
     // Trivia Facts
     public TriviaFact getRandomFact() {
         Query query = entityManager.createNativeQuery("SELECT * FROM trivia_facts ORDER BY RAND() LIMIT 1", TriviaFact.class);
         return (TriviaFact) query.getSingleResult();
     }
-
 
     public TriviaFact getRandomFactByCategory(String category) {
         Query query = entityManager.createNativeQuery("SELECT * FROM trivia_facts WHERE category = :category ORDER BY RAND() LIMIT 1", TriviaFact.class);
@@ -44,10 +44,12 @@ public class VGTDAO {
         }
     }
 
-    public TriviaFact deleteFact(int id) {
+    @Transactional
+    public void deleteFact(int id) {
         TriviaFact fact = entityManager.find(TriviaFact.class, id);
+        if (fact != null) {
             entityManager.remove(fact);
-            return fact;
+        }
     }
 
     // Trivia Questions
@@ -102,4 +104,3 @@ public class VGTDAO {
         entityManager.createNativeQuery("DELETE FROM trivia_questions WHERE creation_date < NOW() - INTERVAL 3 MONTH").executeUpdate();
     }
 }
-

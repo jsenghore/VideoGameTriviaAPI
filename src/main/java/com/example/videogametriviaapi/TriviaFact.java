@@ -1,6 +1,6 @@
 package com.example.videogametriviaapi;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -63,4 +63,3 @@ public class TriviaFact {
         this.creationDate = creationDate;
     }
 }
-
