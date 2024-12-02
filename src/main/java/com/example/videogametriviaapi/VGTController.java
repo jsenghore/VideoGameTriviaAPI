@@ -29,12 +29,12 @@ public class VGTController {
     }
 
     @PutMapping("/facts/{id}")
-    public void updateFact(@PathVariable Long id, @RequestBody TriviaFact fact) {
+    public void updateFact(@PathVariable int id, @RequestBody TriviaFact fact) {
         vgtDAO.updateFact(id, fact);
     }
 
     @DeleteMapping("/facts/{id}")
-    public void deleteFact(@PathVariable Long id) {
+    public void deleteFact(@PathVariable int id) {
         vgtDAO.deleteFact(id);
     }
 
@@ -55,12 +55,12 @@ public class VGTController {
     }
 
     @PutMapping("/questions/{id}")
-    public void updateQuestion(@PathVariable Long id, @RequestBody TriviaQuestion question) {
+    public void updateQuestion(@PathVariable int id, @RequestBody TriviaQuestion question) {
         vgtDAO.updateQuestion(id, question);
     }
 
     @DeleteMapping("/questions/{id}")
-    public void deleteQuestion(@PathVariable Long id) {
+    public void deleteQuestion(@PathVariable int id) {
         vgtDAO.deleteQuestion(id);
     }
 }

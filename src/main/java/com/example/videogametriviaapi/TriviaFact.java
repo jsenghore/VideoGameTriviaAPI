@@ -1,6 +1,6 @@
 package com.example.videogametriviaapi;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,7 +9,7 @@ public class TriviaFact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Unique identifier for the trivia fact
+    private int id; // Unique identifier for the trivia fact
 
     private String fact; // The trivia fact text
 
@@ -19,11 +19,13 @@ public class TriviaFact {
     private LocalDateTime creationDate; // Timestamp for when the fact was created
 
     // Constructors
+    //Default Constructor
     public TriviaFact() {
         this.creationDate = LocalDateTime.now(); // Set creation date to now by default
     }
-
-    public TriviaFact(Long id, String fact, String category) {
+    
+    //Constructor with all fields
+    public TriviaFact(int id, String fact, String category) {
         this.id = id;
         this.fact = fact;
         this.category = category;
@@ -31,11 +33,11 @@ public class TriviaFact {
     }
 
     // Getters and Setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

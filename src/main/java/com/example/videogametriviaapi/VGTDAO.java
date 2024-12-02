@@ -1,11 +1,11 @@
 package com.example.videogametriviaapi;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Random;
 
@@ -35,7 +35,7 @@ public class VGTDAO {
     }
 
     @Transactional
-    public void updateFact(Long id, TriviaFact fact) {
+    public void updateFact(int id, TriviaFact fact) {
         TriviaFact existingFact = entityManager.find(TriviaFact.class, id);
         if (existingFact != null) {
             existingFact.setFact(fact.getFact());
@@ -45,7 +45,7 @@ public class VGTDAO {
     }
 
     @Transactional
-    public void deleteFact(Long id) {
+    public void deleteFact(int id) {
         TriviaFact fact = entityManager.find(TriviaFact.class, id);
         if (fact != null) {
             entityManager.remove(fact);
@@ -70,18 +70,17 @@ public class VGTDAO {
     }
 
     @Transactional
-    public void updateQuestion(Long id, TriviaQuestion question) {
+    public void updateQuestion(int id, TriviaQuestion question) {
         TriviaQuestion existingQuestion = entityManager.find(TriviaQuestion.class, id);
         if (existingQuestion != null) {
             existingQuestion.setQuestion(question.getQuestion());
-            existingQuestion.setOptions(question.getOptions());
             existingQuestion.setCorrectAnswer(question.getCorrectAnswer());
             entityManager.merge(existingQuestion);
         }
     }
 
     @Transactional
-    public void deleteQuestion(Long id) {
+    public void deleteQuestion(int id) {
         TriviaQuestion question = entityManager.find(TriviaQuestion.class, id);
         if (question != null) {
             entityManager.remove(question);
