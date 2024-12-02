@@ -19,16 +19,27 @@ public class TriviaQuestion {
     @Column(name = "creation_date")
     private LocalDateTime creationDate; // Timestamp for when the question was created
 
+    @Column(name = "category")
+    private String category;
     // Constructors
     public TriviaQuestion() {
         this.creationDate = LocalDateTime.now(); // Set creation date to now by default
     }
 
-    public TriviaQuestion(int id, String question, String correctAnswer) {
+    public TriviaQuestion(int id, String question, String correctAnswer, String category) {
         this.id = id;
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.creationDate = LocalDateTime.now(); // Set creation date to now
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     // Getters and Setters
