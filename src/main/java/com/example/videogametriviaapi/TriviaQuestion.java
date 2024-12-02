@@ -1,6 +1,6 @@
 package com.example.videogametriviaapi;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class TriviaQuestion {
 
     @ElementCollection
     @CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
-    @Column(name = "option")
+    @Column(name = "options")
     private List<String> options; // List of answer choices
 
     @Column(name = "correct_answer")
