@@ -53,11 +53,13 @@ public class VGTDAO {
     }
 
     // Trivia Questions
+    @Transactional
     public List<TriviaQuestion> getRandomQuestions() {
         Query query = entityManager.createNativeQuery("SELECT * FROM trivia_questions ORDER BY RAND() LIMIT 5", TriviaQuestion.class);
         return query.getResultList();
     }
 
+    @Transactional
     public List<TriviaQuestion> getRandomQuestionsByCategory(String category) {
         Query query = entityManager.createNativeQuery("SELECT * FROM trivia_questions WHERE category = :category ORDER BY RAND() LIMIT 5", TriviaQuestion.class);
         query.setParameter("category", category);

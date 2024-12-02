@@ -30,8 +30,8 @@ public class TriviaQuestion {
         this.id = id;
         this.question = question;
         this.correctAnswer = correctAnswer;
-        this.creationDate = LocalDateTime.now(); // Set creation date to now
         this.category = category;
+        this.creationDate = LocalDateTime.now(); // Set creation date to now
     }
 
     public String getCategory() {
