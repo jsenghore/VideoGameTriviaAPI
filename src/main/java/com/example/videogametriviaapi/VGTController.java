@@ -13,27 +13,27 @@ public class VGTController {
     private VGTDAO vgtDAO;
 
     // Trivia Facts
-    @GetMapping("/fact")
+    @GetMapping("/facts/random")
     public TriviaFact getRandomFact() {
         return vgtDAO.getRandomFact();
     }
 
-    @GetMapping("/fact/{category}")
+    @GetMapping("/facts/random/{category}")
     public TriviaFact getRandomFactByCategory(@PathVariable String category) {
         return vgtDAO.getRandomFactByCategory(category);
     }
 
-    @PostMapping("/fact")
+    @PostMapping("/facts")
     public void addFact(@RequestBody TriviaFact fact) {
         vgtDAO.addFact(fact);
     }
 
-    @PutMapping("/fact/{id}")
+    @PutMapping("/facts/{id}")
     public void updateFact(@PathVariable int id, @RequestBody TriviaFact fact) {
         vgtDAO.updateFact(id, fact);
     }
 
-    @DeleteMapping("/fact/{id}")
+    @DeleteMapping("/facts/{id}")
     public void deleteFact(@PathVariable int id) {
         vgtDAO.deleteFact(id);
     }

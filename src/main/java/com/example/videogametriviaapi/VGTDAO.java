@@ -74,7 +74,6 @@ public class VGTDAO {
         TriviaQuestion existingQuestion = entityManager.find(TriviaQuestion.class, id);
         if (existingQuestion != null) {
             existingQuestion.setQuestion(question.getQuestion());
-            existingQuestion.setOptions(question.getOptions());
             existingQuestion.setCorrectAnswer(question.getCorrectAnswer());
             entityManager.merge(existingQuestion);
         }

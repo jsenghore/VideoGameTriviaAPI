@@ -2,7 +2,6 @@ package com.example.videogametriviaapi;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "trivia_questions")
@@ -13,11 +12,6 @@ public class TriviaQuestion {
     private int id; // Unique identifier for the trivia question
 
     private String question; // The trivia question text
-
-    @ElementCollection
-    @CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
-    @Column(name = "options")
-    private List<String> options; // List of answer choices
 
     @Column(name = "correct_answer")
     private String correctAnswer; // The correct answer
@@ -30,10 +24,9 @@ public class TriviaQuestion {
         this.creationDate = LocalDateTime.now(); // Set creation date to now by default
     }
 
-    public TriviaQuestion(int id, String question, List<String> options, String correctAnswer) {
+    public TriviaQuestion(int id, String question, String correctAnswer) {
         this.id = id;
         this.question = question;
-        this.options = options;
         this.correctAnswer = correctAnswer;
         this.creationDate = LocalDateTime.now(); // Set creation date to now
     }
@@ -55,14 +48,6 @@ public class TriviaQuestion {
         this.question = question;
     }
 
-    public List<String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
-    }
-
     public String getCorrectAnswer() {
         return correctAnswer;
     }
@@ -79,4 +64,3 @@ public class TriviaQuestion {
         this.creationDate = creationDate;
     }
 }
-
